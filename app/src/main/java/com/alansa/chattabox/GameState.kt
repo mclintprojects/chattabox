@@ -8,7 +8,7 @@ class GameState {
         lateinit var gameManager: GameManager
 
         fun initialize(app: Application) {
-            gameManager = GameManager(app, PlayerManager(ScoreManager()), TimeManager(), LetterManager())
+            gameManager = GameManager(app, PlayerManager(ScoreManager()), TimeManager(), LetterManager(), AudioManager(app))
         }
 
         fun clear() = gameManager.reset()

@@ -38,6 +38,7 @@ class GameManager(private val app: Application,
     }
 
     fun startReadyCountdown() {
+        audioManager.speak("${playerManager.currentPlayer.get()!!}, get ready!")
         timeManager.startReadyCountdown {
             showReadyScreen.set(false)
             letterManager.nextLetter()
@@ -46,7 +47,8 @@ class GameManager(private val app: Application,
         }
     }
 
-    fun startAnswerCountdown() {
+    private fun startAnswerCountdown() {
+        audioManager.speak("Shout a word that starts with ${letterManager.currentLetter.get()!!}")
         timeManager.startAnswerCountdown {
             showAnswerTimer.set(false)
         }

@@ -11,5 +11,5 @@
     <dimen name="faq_subtitle_size">24sp</dimen>
     <dimen name="btn_answer_size">96dp</dimen>
     <dimen name="beforeElapse">16dp</dimen>
-    <dimen name="afterElapse">-120dp</dimen>
+    <dimen name="afterElapse">-100dp</dimen>
 </resources>

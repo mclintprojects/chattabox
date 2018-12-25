@@ -21,8 +21,8 @@ class TimeManager {
     fun startReadyCountdown(elapsed: () -> Unit) {
         readyTimer = Timer(READY_SECS * 1000)
         readyTimer.setOnTickListener { secs ->
-            currentReadySecs.set(secs)
-            if (secs <= 3) audioManager.speak(secs.toString())
+            if (secs > 0) currentReadySecs.set(secs)
+            if (secs in 1..3) audioManager.speak(secs.toString()) else if (secs > 3) audioManager.playTick()
         }
         readyTimer.setOnTimeElapsed {
             elapsed()
@@ -34,12 +34,15 @@ class TimeManager {
     fun startAnswerCountdown(elapsed: () -> Unit) {
         answerTimer = Timer(ANSWER_SECS * 1000)
         answerTimer.setOnTickListener { secs ->
-            currentAnswerSecs.set(secs)
-            if (secs <= 3) audioManager.speak(secs.toString())
+            if (secs > 0) {
+                currentAnswerSecs.set(secs)
+                audioManager.playTick()
+            }
         }
         answerTimer.setOnTimeElapsed {
             currentAnswerSecs.set(0)
             elapsed()
+            audioManager.speak("Time's up!")
         }
         answerTimer.start()
     }

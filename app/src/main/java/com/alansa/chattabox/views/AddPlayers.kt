@@ -41,8 +41,7 @@ class AddPlayers : AppCompatActivity() {
     }
 
     private fun setupPlayersList() {
-        players[0].name.set("Clinton")
-        players[1].name.set("Odette")
+        players[0].name.set("You")
         adapter = PlayersAdapter(players) { pos ->
             if (players.size > 2) {
                 players.removeAt(pos)
