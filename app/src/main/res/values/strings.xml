@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Chattabox</string>
+    <string name="faq">\?</string>
+    <string name="chatterbox">Chattabox!</string>
+    <string name="lets_get_started">Let\'s get started</string>
+    <string name="new_game">New game</string>
+    <string name="view_last_game_scoresheet">View last game\'s scoresheet</string>
+</resources>
