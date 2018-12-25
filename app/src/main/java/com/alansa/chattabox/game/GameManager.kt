@@ -22,10 +22,6 @@ class GameManager(private val playerManager: PlayerManager, private val timeMana
     init {
     }
 
-    fun awardPoint(playerName: String) {
-        playerManager.awardPoint(playerName)
-    }
-
     fun setPlayers(players: List<String>) {
         playerManager.setPlayers(players)
         playerManager.initialize()
@@ -46,8 +42,11 @@ class GameManager(private val playerManager: PlayerManager, private val timeMana
         }
     }
 
-    fun nextTurn() {
+    fun nextTurn(awardPoint: Boolean = false) {
+        if (awardPoint) playerManager.awardPoint()
         playerManager.nextPlayer()
+        showReadyScreen.set(true)
+        showAnswerTimer.set(true)
         startReadyCountdown()
     }
 

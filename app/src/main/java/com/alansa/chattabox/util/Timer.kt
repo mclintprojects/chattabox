@@ -2,7 +2,7 @@ package com.alansa.chattabox.util
 
 import android.os.CountDownTimer
 
-class Timer(millis: Long, tick: Long) : CountDownTimer(millis, tick) {
+class Timer(millis: Long, tick: Long = 1000) : CountDownTimer(millis, tick) {
     private lateinit var tickElapsed: (Int) -> Unit
     private lateinit var timeElapsed: () -> Unit
 

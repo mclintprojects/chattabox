@@ -32,7 +32,7 @@
             android:fontFamily="@font/poppins"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="16dp"
-            android:textColor="@color/colorRemoveText"/>
+            android:textColor="@color/red"/>
 
     </FrameLayout>
 

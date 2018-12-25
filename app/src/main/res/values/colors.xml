@@ -11,5 +11,6 @@
     <color name="black80">#CC000000</color>
     <color name="black54">#8A000000</color>
     <color name="textfieldBgColor">#E5E5E5</color>
-    <color name="colorRemoveText">#ed4c4c</color>
+    <color name="red">#ed4c4c</color>
+    <color name="green">#00E676</color>
 </resources>

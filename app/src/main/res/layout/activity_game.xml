@@ -48,7 +48,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/poppins"
                 android:text="@{viewmodel.readySecs.toString()}"
-                android:textColor="@{viewmodel.readySecs > 3 ? @color/black80 : @color/colorRemoveText}"
+                android:textColor="@{viewmodel.readySecs > 3 ? @color/black80 : @color/red}"
                 android:textSize="144sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
                 android:fontFamily="@font/poppins"
                 android:textSize="72sp"
                 android:textAlignment="center"
-                android:textColor="@color/colorRemoveText"
+                android:textColor="@color/red"
                 android:visibility="@{viewmodel.showAnswerTimer ? View.VISIBLE : View.GONE}"
                 android:layout_marginTop="-144dp"/>
 
@@ -119,6 +119,27 @@
                 android:textColor="@color/black54"
                 android:visibility="@{viewmodel.showAnswerTimer ? View.VISIBLE : View.GONE}"
                 android:layout_marginTop="-40dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@{viewmodel.showAnswerTimer ? @dimen/beforeElapse : @dimen/afterElapse}">
+                <ImageButton
+                    android:id="@+id/btnFailedToAnswer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_unchecked"
+                    android:background="@drawable/bg_btn_wrong"/>
+                <ImageButton
+                    android:id="@+id/btnNextTurn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_checked"
+                    android:background="@drawable/bg_btn_correct"
+                    android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

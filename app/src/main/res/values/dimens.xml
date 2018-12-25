@@ -9,4 +9,7 @@
     <dimen name="title_margin_side">16dp</dimen>
     <dimen name="faq_text_size">18sp</dimen>
     <dimen name="faq_subtitle_size">24sp</dimen>
+    <dimen name="btn_answer_size">96dp</dimen>
+    <dimen name="beforeElapse">16dp</dimen>
+    <dimen name="afterElapse">-120dp</dimen>
 </resources>
