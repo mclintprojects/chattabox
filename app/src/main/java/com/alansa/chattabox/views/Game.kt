@@ -20,10 +20,14 @@ class Game : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_game)
         viewmodel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         binding.viewmodel = viewmodel
+
         GameState.gameManager.startReadyCountdown()
 
         btnFailedToAnswer.setOnClickListener { GameState.gameManager.nextTurn() }
         btnNextTurn.setOnClickListener { GameState.gameManager.nextTurn(true) }
+        btnFinishGame.setOnClickListener {
+            GameState.gameManager.finish()
+        }
     }
 
     override fun onBackPressed() {

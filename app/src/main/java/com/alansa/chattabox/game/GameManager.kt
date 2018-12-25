@@ -1,8 +1,9 @@
 package com.alansa.chattabox.game
 
+import android.app.Application
 import android.databinding.ObservableField
 
-class GameManager(private val playerManager: PlayerManager, private val timeManager: TimeManager, private val letterManager: LetterManager) {
+class GameManager(private val app: Application, private val playerManager: PlayerManager, private val timeManager: TimeManager, private val letterManager: LetterManager) {
     val readySecs
         get() = timeManager.currentReadySecs
 
@@ -55,5 +56,9 @@ class GameManager(private val playerManager: PlayerManager, private val timeMana
         timeManager.reset()
         showReadyScreen.set(true)
         showAnswerTimer.set(true)
+    }
+
+    fun finish(){
+        playerManager.saveScore(app)
     }
 }

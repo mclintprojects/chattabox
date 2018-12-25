@@ -1,5 +1,6 @@
 package com.alansa.chattabox.game
 
+import android.app.Application
 import android.databinding.ObservableField
 
 class PlayerManager(private val scoreManager: ScoreManager) {
@@ -32,4 +33,6 @@ class PlayerManager(private val scoreManager: ScoreManager) {
         currentPlayer.set("")
         players = listOf()
     }
+
+    fun saveScore(app: Application) = scoreManager.saveScores(app)
 }

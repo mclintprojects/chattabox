@@ -15,7 +15,7 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        GameState.initialize()
+        GameState.initialize(application)
         btnViewFaq.setOnClickListener { startActivity(Intent(this, HowToPlay::class.java)) }
         btnNewGame.setOnClickListener { startActivity(Intent(this, AddPlayers::class.java)) }
     }
