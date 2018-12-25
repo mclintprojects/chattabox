@@ -4,7 +4,12 @@ import android.app.Application
 import android.databinding.ObservableField
 import com.alansa.chattabox.viewmodels.ScoreViewModel
 
-class GameManager(private val app: Application, private val playerManager: PlayerManager, private val timeManager: TimeManager, private val letterManager: LetterManager) {
+class GameManager(private val app: Application,
+                  private val playerManager: PlayerManager,
+                  private val timeManager: TimeManager,
+                  private val letterManager: LetterManager,
+                  private val audioManager: AudioManager) {
+
     val readySecs
         get() = timeManager.currentReadySecs
 
@@ -20,6 +25,10 @@ class GameManager(private val app: Application, private val playerManager: Playe
     val showReadyScreen = ObservableField(true)
 
     val showAnswerTimer = ObservableField(true)
+
+    init {
+        timeManager.audioManager = audioManager
+    }
 
     fun getScores(): List<ScoreViewModel> = playerManager.getScores(app)
 

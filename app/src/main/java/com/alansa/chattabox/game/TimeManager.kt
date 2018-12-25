@@ -8,6 +8,7 @@ class TimeManager {
     private val ANSWER_SECS = 5L
     private lateinit var readyTimer: Timer
     private lateinit var answerTimer: Timer
+    lateinit var audioManager: AudioManager
 
     val currentReadySecs = ObservableField<Int>()
     val currentAnswerSecs = ObservableField<Int>()
@@ -19,7 +20,10 @@ class TimeManager {
 
     fun startReadyCountdown(elapsed: () -> Unit) {
         readyTimer = Timer(READY_SECS * 1000)
-        readyTimer.setOnTickListener { secs -> currentReadySecs.set(secs) }
+        readyTimer.setOnTickListener { secs ->
+            currentReadySecs.set(secs)
+            if (secs <= 3) audioManager.speak(secs.toString())
+        }
         readyTimer.setOnTimeElapsed {
             elapsed()
             currentReadySecs.set(0)
@@ -29,7 +33,10 @@ class TimeManager {
 
     fun startAnswerCountdown(elapsed: () -> Unit) {
         answerTimer = Timer(ANSWER_SECS * 1000)
-        answerTimer.setOnTickListener { secs -> currentAnswerSecs.set(secs) }
+        answerTimer.setOnTickListener { secs ->
+            currentAnswerSecs.set(secs)
+            if (secs <= 3) audioManager.speak(secs.toString())
+        }
         answerTimer.setOnTimeElapsed {
             currentAnswerSecs.set(0)
             elapsed()
