@@ -9,10 +9,10 @@
     <string name="before_you_start_content">Agree to a set of popular topics. Make sure they’re fun and accessible to all players.</string>
     <string name="before_you_start">Before you start</string>
     <string name="playing_the_game">Playing the game</string>
-    <string name="playing_the_game_content">The game starts by choosing a random player as the first turn. It gives the player 10secs to get ready and then it shows them the letter that they are to shout a word that starts with it.
-        \n\nFor example, if the current topic is “Cars”, and the game presents letter “A”, the player whose turn it currently is might shout “Aston Martin” or “Astra (Opel)”.
-        \n\nPlayers only have 3secs to shout out a valid word before gameplay moves on to the next player.
-        \n\nIf a player shouts a valid word, they tap the green button to get awarded a point. If not, they tap the red button to pass gameplay to the next player.
+    <string name="playing_the_game_content">The game starts by choosing a random playerViewModel as the first turn. It gives the playerViewModel 10secs to get ready and then it shows them the letter that they are to shout a word that starts with it.
+        \n\nFor example, if the current topic is “Cars”, and the game presents letter “A”, the playerViewModel whose turn it currently is might shout “Aston Martin” or “Astra (Opel)”.
+        \n\nPlayers only have 3secs to shout out a valid word before gameplay moves on to the next playerViewModel.
+        \n\nIf a playerViewModel shouts a valid word, they tap the green button to get awarded a point. If not, they tap the red button to pass gameplay to the next playerViewModel.
         \n\nPlay continues in this manner until all agreed to topics have been played at which point players can view the score sheet to know the winner.</string>
     <string name="how_to_play">How to play</string>
     <string name="players">Players</string>

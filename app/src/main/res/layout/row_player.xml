@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="player"
-            type="com.alansa.chattabox.viewmodels.Player" />
+            name="playerViewModel"
+            type="com.alansa.chattabox.viewmodels.PlayerViewModel" />
     </data>
 
     <FrameLayout
@@ -22,7 +22,7 @@
             android:textSize="20sp"
             android:background="@drawable/bg_textfield"
             android:hint="@string/enter_player_name"
-            android:text="@={player.name}"/>
+            android:text="@={playerViewModel.name}"/>
 
         <TextView
             android:id="@+id/btnRemovePlayer"

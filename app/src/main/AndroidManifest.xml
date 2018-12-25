@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.HowToPlay" />
-        <activity android:name=".views.AddPlayers"></activity>
+        <activity android:name=".views.AddPlayers" />
+        <activity android:name=".views.Game"></activity>
     </application>
 
 </manifest>
