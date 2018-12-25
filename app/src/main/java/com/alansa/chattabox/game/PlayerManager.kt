@@ -8,31 +8,33 @@ class PlayerManager(private val scoreManager: ScoreManager) {
     val currentPlayer = ObservableField<String>("")
     private var currentPlayerIndex = 0
 
-    fun setPlayers(players: List<String>){
+    fun setPlayers(players: List<String>) {
         scoreManager.setPlayers(players)
         this.players = players
     }
 
-    fun awardPoint(){
+    fun awardPoint() {
         scoreManager.awardPoint(players[currentPlayerIndex])
     }
 
-    fun initialize(){
+    fun initialize() {
         currentPlayer.set(players[currentPlayerIndex])
     }
 
-    fun nextPlayer(){
+    fun nextPlayer() {
         ++currentPlayerIndex
-        if(currentPlayerIndex == players.size) currentPlayerIndex = 0
+        if (currentPlayerIndex == players.size) currentPlayerIndex = 0
 
         currentPlayer.set(players[currentPlayerIndex])
     }
 
-    fun reset(){
+    fun reset() {
         currentPlayerIndex = 0
         currentPlayer.set("")
         players = listOf()
     }
 
-    fun saveScore(app: Application) = scoreManager.saveScores(app)
+    fun saveScores(app: Application) = scoreManager.saveScores(app)
+
+    fun getScores(app: Application) = scoreManager.getScores(app)
 }

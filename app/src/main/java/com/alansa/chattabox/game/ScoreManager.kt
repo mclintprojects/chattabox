@@ -12,8 +12,8 @@ class ScoreManager {
         playerNames.forEach { it -> scores[it] = 0 }
     }
 
-    fun awardPoint(playerName: String){
-        if(scores.containsKey(playerName)) scores[playerName] = scores[playerName]!! + 1
+    fun awardPoint(playerName: String) {
+        if (scores.containsKey(playerName)) scores[playerName] = scores[playerName]!! + 1
     }
 
     fun saveScores(app: Application) {
@@ -24,9 +24,9 @@ class ScoreManager {
         editor.apply()
     }
 
-    fun getScores(app: Application) : List<ScoreViewModel>{
+    fun getScores(app: Application): List<ScoreViewModel> {
         val data = deserializeScores(app)
-        return data.map{(name, score) -> ScoreViewModel(name, score)}
+        return data.map { (name, score) -> ScoreViewModel(name, score) }
     }
 
     private fun serializeScores(): String {
@@ -35,14 +35,16 @@ class ScoreManager {
         return builder.toString()
     }
 
-    fun deserializeScores(app: Application) : Map<String, Int>{
+    fun deserializeScores(app: Application): Map<String, Int> {
         val prefs = app.getSharedPreferences(name, Context.MODE_PRIVATE)
         val scoresString = prefs.getString("scores", "")
         val scores = mutableMapOf<String, Int>()
 
         scoresString.split(",").forEach { score ->
-            if(!score.isEmpty()) {val data = score.split(':')
-            scores.put(data[0], data[1].toInt())}
+            if (!score.isEmpty()) {
+                val data = score.split(':')
+                scores.put(data[0], data[1].toInt())
+            }
         }
 
         return scores

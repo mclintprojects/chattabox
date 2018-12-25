@@ -7,16 +7,15 @@ class LetterManager {
     private var currentCharCode = 65
     val currentLetter = ObservableField("")
 
-    fun nextLetter(){
+    fun nextLetter() {
         currentLetter.set(getRandomLetter())
     }
 
-    private fun getRandomLetter() : String {
+    private fun getRandomLetter(): String {
         val randomCharCode = (Random().nextInt(90 + 1 - 65) + 65)
-        if(randomCharCode != currentCharCode) {
+        if (randomCharCode != currentCharCode) {
             currentCharCode = randomCharCode
             return randomCharCode.toChar().toString()
-        }
-        else return getRandomLetter()
+        } else return getRandomLetter()
     }
 }

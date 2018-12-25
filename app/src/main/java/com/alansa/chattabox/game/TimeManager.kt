@@ -37,9 +37,9 @@ class TimeManager {
         answerTimer.start()
     }
 
-    fun reset(){
+    fun reset() {
         currentReadySecs.set(10)
-        if(::answerTimer.isInitialized) answerTimer.cancel()
+        if (::answerTimer.isInitialized) answerTimer.cancel()
         readyTimer.cancel()
     }
 }

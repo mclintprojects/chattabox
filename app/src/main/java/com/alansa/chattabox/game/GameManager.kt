@@ -2,6 +2,7 @@ package com.alansa.chattabox.game
 
 import android.app.Application
 import android.databinding.ObservableField
+import com.alansa.chattabox.viewmodels.ScoreViewModel
 
 class GameManager(private val app: Application, private val playerManager: PlayerManager, private val timeManager: TimeManager, private val letterManager: LetterManager) {
     val readySecs
@@ -20,8 +21,7 @@ class GameManager(private val app: Application, private val playerManager: Playe
 
     val showAnswerTimer = ObservableField(true)
 
-    init {
-    }
+    fun getScores(): List<ScoreViewModel> = playerManager.getScores(app)
 
     fun setPlayers(players: List<String>) {
         playerManager.setPlayers(players)
@@ -37,8 +37,8 @@ class GameManager(private val app: Application, private val playerManager: Playe
         }
     }
 
-    fun startAnswerCountdown(){
-        timeManager.startAnswerCountdown{
+    fun startAnswerCountdown() {
+        timeManager.startAnswerCountdown {
             showAnswerTimer.set(false)
         }
     }
@@ -51,14 +51,14 @@ class GameManager(private val app: Application, private val playerManager: Playe
         startReadyCountdown()
     }
 
-    fun reset(){
+    fun reset() {
         playerManager.reset()
         timeManager.reset()
         showReadyScreen.set(true)
         showAnswerTimer.set(true)
     }
 
-    fun finish(){
-        playerManager.saveScore(app)
+    fun finish() {
+        playerManager.saveScores(app)
     }
 }

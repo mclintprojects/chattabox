@@ -12,7 +12,7 @@ class Timer(millis: Long, tick: Long = 1000) : CountDownTimer(millis, tick) {
     }
 
     override fun onTick(millisUntilFinished: Long) {
-        if(::tickElapsed.isInitialized) tickElapsed(millisUntilFinished.toInt() / 1000)
+        if (::tickElapsed.isInitialized) tickElapsed(millisUntilFinished.toInt() / 1000)
     }
 
     fun setOnTickListener(listener: (Int) -> Unit) {

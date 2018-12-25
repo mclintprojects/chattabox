@@ -1,7 +1,6 @@
 package com.alansa.chattabox.viewmodels
 
 import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableField
 import com.alansa.chattabox.GameState
 
 class GameViewModel : ViewModel() {

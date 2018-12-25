@@ -1,6 +1,7 @@
 package com.alansa.chattabox.views
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -27,6 +28,14 @@ class Game : AppCompatActivity() {
         btnNextTurn.setOnClickListener { GameState.gameManager.nextTurn(true) }
         btnFinishGame.setOnClickListener {
             GameState.gameManager.finish()
+            startActivity(Intent(this, ScoreSheet::class.java))
+
+            val timer = Timer(700)
+            timer.setOnTimeElapsed {
+                GameState.clear()
+                finish()
+            }
+            timer.start()
         }
     }
 
