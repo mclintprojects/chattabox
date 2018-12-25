@@ -1,14 +1,26 @@
 package com.alansa.chattabox.game
 
-class GameManager(private val playerManager: PlayerManager, private val timeManager: TimeManager) {
+import android.databinding.ObservableField
+
+class GameManager(private val playerManager: PlayerManager, private val timeManager: TimeManager, private val letterManager: LetterManager) {
     val readySecs
         get() = timeManager.currentReadySecs
 
     val answerSecs
         get() = timeManager.currentAnswerSecs
 
-    val readyElapsed
-        get() = timeManager.readyElapsed
+    val currentPlayer
+        get() = playerManager.currentPlayer
+
+    val currentLetter
+        get() = letterManager.currentLetter
+
+    val showReadyScreen = ObservableField(true)
+
+    val showAnswerTimer = ObservableField(true)
+
+    init {
+    }
 
     fun awardPoint(playerName: String) {
         playerManager.awardPoint(playerName)
@@ -16,9 +28,33 @@ class GameManager(private val playerManager: PlayerManager, private val timeMana
 
     fun setPlayers(players: List<String>) {
         playerManager.setPlayers(players)
+        playerManager.initialize()
     }
 
     fun startReadyCountdown() {
-        timeManager.startReadyCountdown()
+        timeManager.startReadyCountdown {
+            showReadyScreen.set(false)
+            letterManager.nextLetter()
+            showAnswerTimer.set(true)
+            startAnswerCountdown()
+        }
+    }
+
+    fun startAnswerCountdown(){
+        timeManager.startAnswerCountdown{
+            showAnswerTimer.set(false)
+        }
+    }
+
+    fun nextTurn() {
+        playerManager.nextPlayer()
+        startReadyCountdown()
+    }
+
+    fun reset(){
+        playerManager.reset()
+        timeManager.reset()
+        showReadyScreen.set(true)
+        showAnswerTimer.set(true)
     }
 }

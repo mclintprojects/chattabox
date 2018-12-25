@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.alansa.chattabox.GameState
 import com.alansa.chattabox.R
 import com.alansa.chattabox.databinding.ActivityGameBinding
+import com.alansa.chattabox.util.Timer
 import com.alansa.chattabox.viewmodels.GameViewModel
 
 class Game : AppCompatActivity() {
@@ -19,5 +20,13 @@ class Game : AppCompatActivity() {
         viewmodel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         binding.viewmodel = viewmodel
         GameState.gameManager.startReadyCountdown()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        val timer = Timer(2000, 1000)
+        timer.setOnTimeElapsed { GameState.clear() }
+        timer.start()
     }
 }

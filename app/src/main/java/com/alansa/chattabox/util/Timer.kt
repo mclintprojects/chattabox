@@ -8,10 +8,11 @@ class Timer(millis: Long, tick: Long) : CountDownTimer(millis, tick) {
 
     override fun onFinish() {
         timeElapsed()
+        cancel()
     }
 
     override fun onTick(millisUntilFinished: Long) {
-        tickElapsed(millisUntilFinished.toInt() / 1000)
+        if(::tickElapsed.isInitialized) tickElapsed(millisUntilFinished.toInt() / 1000)
     }
 
     fun setOnTickListener(listener: (Int) -> Unit) {

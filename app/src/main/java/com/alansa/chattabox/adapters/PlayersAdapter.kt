@@ -21,7 +21,7 @@ class PlayersAdapter(private val players: List<PlayerViewModel>, private val onD
 
     fun generatePlayerList(): List<String> {
         val playerList = mutableListOf<String>()
-        players.forEach { player -> if (!player.name.toString().isEmpty()) playerList.add(player.name.toString()) }
+        players.forEach { player -> if (!player.name.toString().isEmpty()) playerList.add(player.name.get()!!) }
         return playerList
     }
 

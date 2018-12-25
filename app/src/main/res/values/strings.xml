@@ -20,4 +20,7 @@
     <string name="add_player">Add player</string>
     <string name="enter_player_name">Enter player\'s name</string>
     <string name="remove">Remove</string>
+    <string name="in">in</string>
+    <string name="secs">secs</string>
+    <string name="shout_a_word">Shout a word that starts with</string>
 </resources>

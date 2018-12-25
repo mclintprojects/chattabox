@@ -11,21 +11,34 @@ class TimeManager {
 
     val currentReadySecs = ObservableField<Int>()
     val currentAnswerSecs = ObservableField<Int>()
-    val readyElapsed = ObservableField<Boolean>()
 
     init {
         currentReadySecs.set(10)
     }
 
-    fun startReadyCountdown() {
+    fun startReadyCountdown(elapsed: () -> Unit) {
         readyTimer = Timer(READY_SECS * 1000, 1000)
-        readyTimer.setOnTickListener { secs ->
-            currentReadySecs.set(secs)
-        }
+        readyTimer.setOnTickListener { secs -> currentReadySecs.set(secs) }
         readyTimer.setOnTimeElapsed {
             currentReadySecs.set(0)
-            readyElapsed.set(true)
+            elapsed()
         }
         readyTimer.start()
+    }
+
+    fun startAnswerCountdown(elapsed: () -> Unit) {
+        answerTimer = Timer(ANSWER_SECS * 1000, 1000)
+        answerTimer.setOnTickListener { secs -> currentAnswerSecs.set(secs) }
+        answerTimer.setOnTimeElapsed {
+            currentAnswerSecs.set(0)
+            elapsed()
+        }
+        answerTimer.start()
+    }
+
+    fun reset(){
+        currentReadySecs.set(10)
+        if(::answerTimer.isInitialized) answerTimer.cancel()
+        readyTimer.cancel()
     }
 }

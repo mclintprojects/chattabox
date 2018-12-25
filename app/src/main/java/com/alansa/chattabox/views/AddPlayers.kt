@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import com.alansa.chattabox.GameState
 import com.alansa.chattabox.R
 import com.alansa.chattabox.adapters.PlayersAdapter
 import com.alansa.chattabox.viewmodels.PlayerViewModel
@@ -28,8 +29,15 @@ class AddPlayers : AppCompatActivity() {
         btnStartGame.setOnClickListener {
             val playerList = adapter.generatePlayerList()
             if (playerList.size < 2) Toast.makeText(this, "You need at least 2 players to start the game.", Toast.LENGTH_LONG).show()
-            else startActivity(Intent(this, Game::class.java))
+            else {
+                GameState.gameManager.setPlayers(playerList)
+                startActivity(Intent(this, Game::class.java))
+            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     private fun setupPlayersList() {
