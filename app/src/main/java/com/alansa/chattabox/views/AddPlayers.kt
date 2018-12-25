@@ -26,7 +26,7 @@ class AddPlayers : AppCompatActivity() {
         }
         btnStartGame.setOnClickListener {
             val playerList = adapter.generatePlayerList()
-            if(playerList.size < 2) Toast.makeText(this, "You need at least 2 players to start the game.", Toast.LENGTH_LONG).show()
+            if (playerList.size < 2) Toast.makeText(this, "You need at least 2 players to start the game.", Toast.LENGTH_LONG).show()
         }
     }
 
