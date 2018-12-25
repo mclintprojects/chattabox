@@ -2,6 +2,7 @@ package com.alansa.chattabox.views
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.alansa.chattabox.R
 
 class ScoreSheet : AppCompatActivity() {
 

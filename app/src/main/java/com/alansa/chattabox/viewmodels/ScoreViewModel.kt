@@ -5,5 +5,5 @@ import android.databinding.ObservableField
 
 class ScoreViewModel(name: String, score: Int) : ViewModel() {
     val name = ObservableField(name)
-    val score = ObservableField(score)
+    val points = ObservableField(score)
 }
