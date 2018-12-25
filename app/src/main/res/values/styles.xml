@@ -9,5 +9,6 @@
 
     <style name="AppButton" parent="Base.TextAppearance.AppCompat.Button">
         <item name="textAllCaps">false</item>
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 </resources>

@@ -6,4 +6,10 @@
     <color name="colorAccent">#2B3A4A</color>
     <color name="colorPrimaryBtnText">#fff</color>
     <color name="colorSecondaryBtnText">#757575</color>
+    <color name="white80">#CCFFFFFF</color>
+    <color name="white54">#8AFFFFFF</color>
+    <color name="black80">#CC000000</color>
+    <color name="black54">#8A000000</color>
+    <color name="textfieldBgColor">#E5E5E5</color>
+    <color name="colorRemoveText">#ed4c4c</color>
 </resources>
