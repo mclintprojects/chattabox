@@ -2,6 +2,7 @@ package com.alansa.chattabox.game
 
 import android.app.Application
 import android.databinding.ObservableField
+import com.alansa.chattabox.viewmodels.PlayerViewModel
 import com.alansa.chattabox.viewmodels.ScoreViewModel
 
 class GameManager(private val app: Application,
@@ -33,7 +34,7 @@ class GameManager(private val app: Application,
         playerManager.setPlayerCompletedListener { playerName ->
             audioManager.speak("${playerName}, you're done!")
         }
-        playerManager.setOnePlayerLeftListener{
+        playerManager.setOnePlayerLeftListener {
             onePlayerLeftListener()
             audioManager.speak("Game over!")
         }
@@ -41,14 +42,18 @@ class GameManager(private val app: Application,
 
     fun getScores(): List<ScoreViewModel> = playerManager.getScores(app)
 
+    fun getPlayerNames(): MutableList<PlayerViewModel> = playerManager.deserializePlayerNames(app)
+
     fun setPlayers(players: MutableList<String>) {
         playerManager.setPlayers(players)
         playerManager.initialize()
     }
 
-    fun setTurns(turns: Int){
+    fun setTurns(turns: Int) {
         this.playerManager.setTurns(turns)
     }
+
+    fun savePlayerNames() = playerManager.serializePlayerNames(app)
 
     fun setOnePlayerLeftListener(listener: () -> Unit) {
         this.onePlayerLeftListener = listener

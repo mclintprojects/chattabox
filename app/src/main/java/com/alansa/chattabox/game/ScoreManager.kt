@@ -6,7 +6,6 @@ import com.alansa.chattabox.viewmodels.ScoreViewModel
 
 class ScoreManager {
     private val scores: MutableMap<String, Int> = mutableMapOf()
-    private val name = "com.alansa.chattabox"
 
     fun setPlayers(playerNames: List<String>) {
         playerNames.forEach { it -> scores[it] = 0 }
@@ -19,7 +18,7 @@ class ScoreManager {
     fun getPoint(playerName: String) = scores[playerName]
 
     fun saveScores(app: Application) {
-        val editor = app.getSharedPreferences(name, Context.MODE_PRIVATE).edit()
+        val editor = app.getSharedPreferences(app.packageName, Context.MODE_PRIVATE).edit()
         val scores = serializeScores()
 
         editor.putString("scores", scores)
@@ -38,7 +37,7 @@ class ScoreManager {
     }
 
     fun deserializeScores(app: Application): Map<String, Int> {
-        val prefs = app.getSharedPreferences(name, Context.MODE_PRIVATE)
+        val prefs = app.getSharedPreferences(app.packageName, Context.MODE_PRIVATE)
         val scoresString = prefs.getString("scores", "")
         val scores = mutableMapOf<String, Int>()
 

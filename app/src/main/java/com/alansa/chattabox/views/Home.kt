@@ -15,9 +15,10 @@ class Home : AppCompatActivity() {
         btnViewFaq.setOnClickListener { startActivity(Intent(this, HowToPlay::class.java)) }
         btnNewGame.setOnClickListener {
             val dialog = GameSetupDialog(this)
-            dialog.setOnStartListener {
-                turns -> GameState.gameManager.setTurns(turns)
-                startActivity(Intent(this, AddPlayers::class.java)) }
+            dialog.setOnStartListener { turns ->
+                GameState.gameManager.setTurns(turns)
+                startActivity(Intent(this, AddPlayers::class.java))
+            }
             dialog.show(supportFragmentManager, "")
         }
         btnScoreSheet.setOnClickListener { startActivity(Intent(this, ScoreSheet::class.java)) }

@@ -18,9 +18,10 @@ class GameSetupDialog(private val ctx: Context) : DialogFragment() {
         view.btnStart.setOnClickListener {
             if (!view.tbTurns.text.isNullOrEmpty()) {
                 val turnsCount = view.tbTurns.text.toString().toInt()
-                if (turnsCount > 0)
+                if (turnsCount > 0) {
                     listener(view.tbTurns.text.toString().toInt())
-                else Toast.makeText(activity, "Turns cannot be less than zero.", Toast.LENGTH_LONG).show()
+                    dismiss()
+                } else Toast.makeText(activity, "Turns cannot be less than zero.", Toast.LENGTH_LONG).show()
             } else Toast.makeText(activity, "Turns cannot be empty.", Toast.LENGTH_LONG).show()
         }
 

@@ -1,7 +1,9 @@
 package com.alansa.chattabox.game
 
 import android.app.Application
+import android.content.Context
 import android.databinding.ObservableField
+import com.alansa.chattabox.viewmodels.PlayerViewModel
 
 class PlayerManager(private val scoreManager: ScoreManager) {
     private lateinit var players: MutableList<String>
@@ -61,4 +63,17 @@ class PlayerManager(private val scoreManager: ScoreManager) {
     fun saveScores(app: Application) = scoreManager.saveScores(app)
 
     fun getScores(app: Application) = scoreManager.getScores(app)
+
+    fun serializePlayerNames(app: Application) {
+        val editor = app.getSharedPreferences(app.packageName, Context.MODE_PRIVATE).edit()
+        editor.putString("playerNames", players.joinToString(","))
+        editor.apply()
+    }
+
+    fun deserializePlayerNames(app: Application): MutableList<PlayerViewModel> {
+        val playerNames = mutableListOf<PlayerViewModel>()
+        val data = app.getSharedPreferences(app.packageName, Context.MODE_PRIVATE).getString("playerNames", "")
+        data.split(",").map { name -> playerNames.add(PlayerViewModel(name)) }
+        return playerNames
+    }
 }

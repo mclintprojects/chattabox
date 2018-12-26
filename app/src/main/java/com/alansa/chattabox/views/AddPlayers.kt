@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_add_players.*
 
 class AddPlayers : AppCompatActivity() {
 
-    private val players = mutableListOf<PlayerViewModel>(PlayerViewModel(), PlayerViewModel())
+    private val players = mutableListOf<PlayerViewModel>()
     private lateinit var adapter: PlayersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +32,7 @@ class AddPlayers : AppCompatActivity() {
             else {
                 GameState.gameManager.setPlayers(playerList)
                 startActivity(Intent(this, Game::class.java))
+                GameState.gameManager.savePlayerNames()
             }
         }
         btnCloseActivity.setOnClickListener { finish() }
@@ -42,7 +43,10 @@ class AddPlayers : AppCompatActivity() {
     }
 
     private fun setupPlayersList() {
-        players[0].name.set("You")
+        val playerNames = GameState.gameManager.getPlayerNames()
+        if (playerNames.isEmpty()) players.addAll(listOf(PlayerViewModel("You"), PlayerViewModel()))
+        else this.players.addAll(playerNames)
+
         adapter = PlayersAdapter(players) { pos ->
             if (players.size > 2) {
                 players.removeAt(pos)
