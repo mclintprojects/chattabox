@@ -11,6 +11,17 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
+        <ImageView
+            android:id="@+id/btnCloseActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/close_activity"
+            android:src="@drawable/ic_unchecked_black"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -32,7 +43,7 @@
             android:layout_marginStart="@dimen/title_margin_side"
             android:fontFamily="@font/poppins"
             android:text="@string/game_overview"
-            android:textColor="@color/white54"
+            android:textColor="@color/white80"
             android:textSize="@dimen/faq_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +57,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins"
             android:text="@string/before_you_start"
-            android:textColor="@color/white80"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/faq_subtitle_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -59,7 +70,7 @@
             android:layout_marginStart="@dimen/title_margin_side"
             android:fontFamily="@font/poppins"
             android:text="@string/before_you_start_content"
-            android:textColor="@color/white54"
+            android:textColor="@color/white80"
             android:textSize="@dimen/faq_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +84,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins"
             android:text="@string/playing_the_game"
-            android:textColor="@color/white80"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/faq_subtitle_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -87,7 +98,7 @@
             android:layout_marginStart="@dimen/title_margin_side"
             android:fontFamily="@font/poppins"
             android:text="@string/playing_the_game_content"
-            android:textColor="@color/white54"
+            android:textColor="@color/white80"
             android:textSize="@dimen/faq_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

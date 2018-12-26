@@ -14,6 +14,7 @@ class ScoreSheet : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score_sheet)
         setupScoresList()
+        btnCloseActivity.setOnClickListener { finish() }
     }
 
     private fun setupScoresList() {

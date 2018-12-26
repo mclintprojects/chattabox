@@ -34,6 +34,7 @@ class AddPlayers : AppCompatActivity() {
                 startActivity(Intent(this, Game::class.java))
             }
         }
+        btnCloseActivity.setOnClickListener { finish() }
     }
 
     override fun onResume() {
