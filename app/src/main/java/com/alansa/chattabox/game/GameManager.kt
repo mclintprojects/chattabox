@@ -55,6 +55,7 @@ class GameManager(private val app: Application,
     }
 
     fun nextTurn(awardPoint: Boolean = false) {
+        timeManager.cancelAnswerCountdown()
         if (awardPoint) playerManager.awardPoint()
         playerManager.nextPlayer()
         showReadyScreen.set(true)

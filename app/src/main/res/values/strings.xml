@@ -26,4 +26,6 @@
     <string name="score_sheet">Score sheet</string>
     <string name="finish_game">Finish game</string>
     <string name="close_activity">Close activity</string>
+    <string name="start">Start</string>
+    <string name="how_many_turns_each">How many turns each?</string>
 </resources>
