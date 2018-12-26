@@ -26,7 +26,6 @@ class GameSetupDialog(private val ctx: Context) : DialogFragment() {
         }
 
         return AlertDialog.Builder(ctx)
-                .setTitle("  ")
                 .setView(view)
                 .create()
     }

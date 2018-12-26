@@ -6,14 +6,17 @@
     <string name="new_game">New game</string>
     <string name="view_last_game_scoresheet">View last game\'s scoresheet</string>
     <string name="game_overview">In this fast-moving word game, players race through a series of popular topics while trying to shout out words that start with the letter currently on-screen.</string>
-    <string name="before_you_start_content">Agree to a set of popular topics. Make sure they’re fun and accessible to all players.</string>
+    <string name="before_you_start_content">1. Agree to a set of popular topics. Make sure they’re fun and accessible to all players.
+        \n\n2. Agree to how many points need to be achieved to exit the game.
+    </string>
     <string name="before_you_start">Before you start</string>
     <string name="playing_the_game">Playing the game</string>
-    <string name="playing_the_game_content">The game starts by choosing a random player as the first turn. It gives the player 10secs to get ready and then it shows them the letter that they are to shout a word that starts with it.
+    <string name="playing_the_game_content">The game starts by choosing the first player. It gives that player 10secs to get ready and then it shows them the letter that they are to shout a word for.
         \n\nFor example, if the current topic is “Cars”, and the game presents letter “A”, the player whose turn it currently is might shout “Aston Martin” or “Astra (Opel)”.
-        \n\nPlayers only have 5secs to shout out a valid word before gameplay moves on to the next player.
-        \n\nIf a player shouts a valid word, they tap the green button to get awarded a point. If not, they tap the red button to pass gameplay to the next player.
-        \n\nPlay continues in this manner until all agreed to topics have been played at which point players can view the score sheet to know the winner.</string>
+        \n\nPlayers only have 5secs to shout out a valid word. If they are unable to do so in time, they tap the red button to move gameplay onto the next player.
+        \n\nIf a player shouts a valid word, they tap the green button to get awarded a point. If not, they tap the red button to pass gameplay onto the next player.
+        \n\nIf a player achieves the points needed to exit the game they are immediately added to the final score sheet and removed from gameplay leaving the rest of the players to continue.
+        \n\nPlay continues in this manner until all but one player has achieved enough points to exit. At this point, players can view the score sheet to know the winner.</string>
     <string name="how_to_play">How to play</string>
     <string name="players">Players</string>
     <string name="start_game">Start game</string>
@@ -27,5 +30,5 @@
     <string name="finish_game">Finish game</string>
     <string name="close_activity">Close activity</string>
     <string name="start">Start</string>
-    <string name="how_many_turns_each">How many turns each?</string>
+    <string name="how_many_turns_each">How many points to exit?</string>
 </resources>
