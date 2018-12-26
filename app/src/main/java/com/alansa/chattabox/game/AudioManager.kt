@@ -4,7 +4,7 @@ import android.media.MediaPlayer
 import android.speech.tts.TextToSpeech
 import java.util.*
 
-class AudioManager(private val tts: TextToSpeech, private val tickPlayer: MediaPlayer) {
+open class AudioManager(private val tts: TextToSpeech, private val tickPlayer: MediaPlayer) {
     init {
         tts.language = Locale.US
     }

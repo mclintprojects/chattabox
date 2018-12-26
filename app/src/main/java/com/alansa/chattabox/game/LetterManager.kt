@@ -3,7 +3,7 @@ package com.alansa.chattabox.game
 import android.databinding.ObservableField
 import java.util.*
 
-class LetterManager {
+open class LetterManager {
     private var currentCharCode = 65
     val currentLetter = ObservableField("")
 

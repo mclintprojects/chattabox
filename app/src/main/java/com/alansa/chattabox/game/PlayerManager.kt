@@ -5,7 +5,7 @@ import android.content.Context
 import android.databinding.ObservableField
 import com.alansa.chattabox.viewmodels.PlayerViewModel
 
-class PlayerManager(private val scoreManager: ScoreManager) {
+open class PlayerManager(private val scoreManager: ScoreManager) {
     private lateinit var players: MutableList<String>
     private lateinit var playerCompletedListener: (String) -> Unit
     private lateinit var onePlayerLeftListener: () -> Unit

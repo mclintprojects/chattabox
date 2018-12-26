@@ -3,7 +3,7 @@ package com.alansa.chattabox.game
 import android.databinding.ObservableField
 import com.alansa.chattabox.util.Timer
 
-class TimeManager {
+open class TimeManager {
     private val READY_SECS = 10L
     private val ANSWER_SECS = 5L
     private lateinit var readyTimer: Timer

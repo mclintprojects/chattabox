@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.alansa.chattabox.viewmodels.ScoreViewModel
 
-class ScoreManager {
+open class ScoreManager {
     private val scores: MutableMap<String, Int> = mutableMapOf()
 
     fun initializeScores(playerNames: List<String>) {
