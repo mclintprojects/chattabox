@@ -23,20 +23,23 @@ class Game : AppCompatActivity() {
         binding.viewmodel = viewmodel
 
         GameState.gameManager.startReadyCountdown()
+        GameState.gameManager.setOnePlayerLeftListener { finishGame() }
 
         btnFailedToAnswer.setOnClickListener { GameState.gameManager.nextTurn() }
         btnNextTurn.setOnClickListener { GameState.gameManager.nextTurn(true) }
-        btnFinishGame.setOnClickListener {
-            GameState.gameManager.finish()
-            startActivity(Intent(this, ScoreSheet::class.java))
+        btnFinishGame.setOnClickListener { finishGame() }
+    }
 
-            val timer = Timer(700)
-            timer.setOnTimeElapsed {
-                GameState.clear()
-                finish()
-            }
-            timer.start()
+    private fun finishGame() {
+        GameState.gameManager.finish()
+        startActivity(Intent(this, ScoreSheet::class.java))
+
+        val timer = Timer(700)
+        timer.setOnTimeElapsed {
+            GameState.clear()
+            finish()
         }
+        timer.start()
     }
 
     override fun onBackPressed() {

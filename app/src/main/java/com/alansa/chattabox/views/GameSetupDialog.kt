@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.view.LayoutInflater
 import android.widget.Toast
 import com.alansa.chattabox.R
 import kotlinx.android.synthetic.main.dialog_game_setup.view.*
@@ -13,7 +14,7 @@ class GameSetupDialog(private val ctx: Context) : DialogFragment() {
     private lateinit var listener: (Int) -> Unit
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val view = layoutInflater.inflate(R.layout.dialog_game_setup, null, false)
+        val view = LayoutInflater.from(ctx).inflate(R.layout.dialog_game_setup, null)
         view.btnStart.setOnClickListener {
             if (!view.tbTurns.text.isNullOrEmpty()) {
                 val turnsCount = view.tbTurns.text.toString().toInt()
@@ -24,6 +25,7 @@ class GameSetupDialog(private val ctx: Context) : DialogFragment() {
         }
 
         return AlertDialog.Builder(ctx)
+                .setTitle("  ")
                 .setView(view)
                 .create()
     }

@@ -26,15 +26,32 @@ class GameManager(private val app: Application,
 
     val showAnswerTimer = ObservableField(true)
 
+    private lateinit var onePlayerLeftListener: () -> Unit
+
     init {
         timeManager.audioManager = audioManager
+        playerManager.setPlayerCompletedListener { playerName ->
+            audioManager.speak("${playerName}, you're done!")
+        }
+        playerManager.setOnePlayerLeftListener{
+            onePlayerLeftListener()
+            audioManager.speak("Game over!")
+        }
     }
 
     fun getScores(): List<ScoreViewModel> = playerManager.getScores(app)
 
-    fun setPlayers(players: List<String>) {
+    fun setPlayers(players: MutableList<String>) {
         playerManager.setPlayers(players)
         playerManager.initialize()
+    }
+
+    fun setTurns(turns: Int){
+        this.playerManager.setTurns(turns)
+    }
+
+    fun setOnePlayerLeftListener(listener: () -> Unit) {
+        this.onePlayerLeftListener = listener
     }
 
     fun startReadyCountdown() {

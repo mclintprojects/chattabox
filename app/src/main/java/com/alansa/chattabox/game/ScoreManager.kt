@@ -16,6 +16,8 @@ class ScoreManager {
         if (scores.containsKey(playerName)) scores[playerName] = scores[playerName]!! + 1
     }
 
+    fun getPoint(playerName: String) = scores[playerName]
+
     fun saveScores(app: Application) {
         val editor = app.getSharedPreferences(name, Context.MODE_PRIVATE).edit()
         val scores = serializeScores()
