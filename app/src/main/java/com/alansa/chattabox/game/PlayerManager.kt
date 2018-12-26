@@ -44,14 +44,15 @@ class PlayerManager(private val scoreManager: ScoreManager) {
 
     fun nextPlayer() {
         ++currentPlayerIndex
-        if (currentPlayerIndex == players.size) currentPlayerIndex = 0
+        if (currentPlayerIndex >= players.size) currentPlayerIndex = 0
 
         currentPlayer.set(players[currentPlayerIndex])
     }
 
-    fun removeCurrentPlayer() {
+    private fun removeCurrentPlayer() {
         if (::playerCompletedListener.isInitialized) playerCompletedListener(players[currentPlayerIndex])
         players.removeAt(currentPlayerIndex)
+        --currentPlayerIndex
     }
 
     fun reset() {

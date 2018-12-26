@@ -28,6 +28,7 @@ class GameManager(private val app: Application,
     val showAnswerTimer = ObservableField(true)
 
     private lateinit var onePlayerLeftListener: () -> Unit
+    private var gameOver = false
 
     init {
         timeManager.audioManager = audioManager
@@ -35,6 +36,7 @@ class GameManager(private val app: Application,
             audioManager.speak("${playerName}, you're done!")
         }
         playerManager.setOnePlayerLeftListener {
+            gameOver = true
             onePlayerLeftListener()
             audioManager.speak("Game over!")
         }
@@ -60,19 +62,23 @@ class GameManager(private val app: Application,
     }
 
     fun startReadyCountdown() {
-        audioManager.speak("${playerManager.currentPlayer.get()!!}, get ready!")
-        timeManager.startReadyCountdown {
-            showReadyScreen.set(false)
-            letterManager.nextLetter()
-            showAnswerTimer.set(true)
-            startAnswerCountdown()
+        if (!gameOver) {
+            audioManager.speak("${playerManager.currentPlayer.get()!!}, get ready!")
+            timeManager.startReadyCountdown {
+                showReadyScreen.set(false)
+                letterManager.nextLetter()
+                showAnswerTimer.set(true)
+                startAnswerCountdown()
+            }
         }
     }
 
     private fun startAnswerCountdown() {
-        audioManager.speak("Shout a word that starts with ${letterManager.currentLetter.get()!!}")
-        timeManager.startAnswerCountdown {
-            showAnswerTimer.set(false)
+        if (!gameOver) {
+            audioManager.speak("Shout a word that starts with ${letterManager.currentLetter.get()!!}")
+            timeManager.startAnswerCountdown {
+                showAnswerTimer.set(false)
+            }
         }
     }
 
@@ -86,6 +92,7 @@ class GameManager(private val app: Application,
     }
 
     fun reset() {
+        gameOver = false
         playerManager.reset()
         timeManager.reset()
         showReadyScreen.set(true)

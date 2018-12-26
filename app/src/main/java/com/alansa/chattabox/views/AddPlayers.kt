@@ -44,8 +44,7 @@ class AddPlayers : AppCompatActivity() {
 
     private fun setupPlayersList() {
         val playerNames = GameState.gameManager.getPlayerNames()
-        if (playerNames.isEmpty()) players.addAll(listOf(PlayerViewModel("You"), PlayerViewModel()))
-        else this.players.addAll(playerNames)
+        this.players.addAll(playerNames)
 
         adapter = PlayersAdapter(players) { pos ->
             if (players.size > 2) {
