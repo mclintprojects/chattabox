@@ -16,7 +16,7 @@ class GameManagerTest {
 
     @Before
     fun setup() {
-        playerManager = Mockito.spy(PlayerManager(ScoreManager()))
+        playerManager = Mockito.spy(PlayerManager(ScoreManagerTest()))
         gameManager = GameManager(mock(), playerManager, timeManager, letterManager, audioManager)
     }
 
