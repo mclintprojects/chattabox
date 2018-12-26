@@ -23,6 +23,12 @@ class GameManager(private val app: Application,
     val currentLetter
         get() = letterManager.currentLetter
 
+    val scores: List<ScoreViewModel>
+        get() = playerManager.getScores(app)
+
+    val playerNames: MutableList<PlayerViewModel>
+        get() = playerManager.deserializeSavedPlayerNames(app)
+
     val showReadyScreen = ObservableField(true)
 
     val showAnswerTimer = ObservableField(true)
@@ -41,10 +47,6 @@ class GameManager(private val app: Application,
             audioManager.speak("Game over!")
         }
     }
-
-    fun getScores(): List<ScoreViewModel> = playerManager.getScores(app)
-
-    fun getPlayerNames(): MutableList<PlayerViewModel> = playerManager.deserializePlayerNames(app)
 
     fun setPlayers(players: MutableList<String>) {
         playerManager.setPlayers(players)
@@ -66,7 +68,7 @@ class GameManager(private val app: Application,
             audioManager.speak("${playerManager.currentPlayer.get()!!}, get ready!")
             timeManager.startReadyCountdown {
                 showReadyScreen.set(false)
-                letterManager.nextLetter()
+                letterManager.chooseNextLetter()
                 showAnswerTimer.set(true)
                 startAnswerCountdown()
             }
@@ -82,16 +84,16 @@ class GameManager(private val app: Application,
         }
     }
 
-    fun nextTurn(awardPoint: Boolean = false) {
+    fun playNextTurn(awardPoint: Boolean = false) {
         timeManager.cancelAnswerCountdown()
         if (awardPoint) playerManager.awardPoint()
-        playerManager.nextPlayer()
+        playerManager.chooseNextPlayer()
         showReadyScreen.set(true)
         showAnswerTimer.set(true)
         startReadyCountdown()
     }
 
-    fun reset() {
+    fun resetGame() {
         gameOver = false
         playerManager.reset()
         timeManager.reset()
@@ -99,7 +101,7 @@ class GameManager(private val app: Application,
         showAnswerTimer.set(true)
     }
 
-    fun finish() {
+    fun finishGame() {
         playerManager.saveScores(app)
     }
 }

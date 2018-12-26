@@ -43,8 +43,7 @@ class AddPlayers : AppCompatActivity() {
     }
 
     private fun setupPlayersList() {
-        val playerNames = GameState.gameManager.getPlayerNames()
-        this.players.addAll(playerNames)
+        this.players.addAll(GameState.gameManager.playerNames)
 
         adapter = PlayersAdapter(players) { pos ->
             if (players.size > 2) {

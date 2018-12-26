@@ -13,21 +13,13 @@ class TimeManager {
     val currentReadySecs = ObservableField<Int>()
     val currentAnswerSecs = ObservableField<Int>()
 
-    init {
-        currentReadySecs.set(10)
-        currentReadySecs.set(3)
-    }
-
     fun startReadyCountdown(elapsed: () -> Unit) {
         readyTimer = Timer(READY_SECS * 1000)
         readyTimer.setOnTickListener { secs ->
             if (secs > 0) currentReadySecs.set(secs)
             if (secs in 1..3) audioManager.speak(secs.toString()) else if (secs > 3) audioManager.playTick()
         }
-        readyTimer.setOnTimeElapsed {
-            elapsed()
-            currentReadySecs.set(0)
-        }
+        readyTimer.setOnTimeElapsed { elapsed() }
         readyTimer.start()
     }
 
@@ -40,7 +32,6 @@ class TimeManager {
             }
         }
         answerTimer.setOnTimeElapsed {
-            currentAnswerSecs.set(0)
             elapsed()
             audioManager.speak("Time's up!")
         }

@@ -25,13 +25,13 @@ class Game : AppCompatActivity() {
         GameState.gameManager.startReadyCountdown()
         GameState.gameManager.setOnePlayerLeftListener { finishGame() }
 
-        btnFailedToAnswer.setOnClickListener { GameState.gameManager.nextTurn() }
-        btnNextTurn.setOnClickListener { GameState.gameManager.nextTurn(true) }
+        btnFailedToAnswer.setOnClickListener { GameState.gameManager.playNextTurn() }
+        btnNextTurn.setOnClickListener { GameState.gameManager.playNextTurn(true) }
         btnFinishGame.setOnClickListener { finishGame() }
     }
 
     private fun finishGame() {
-        GameState.gameManager.finish()
+        GameState.gameManager.finishGame()
         startActivity(Intent(this, ScoreSheet::class.java))
 
         val timer = Timer(700)

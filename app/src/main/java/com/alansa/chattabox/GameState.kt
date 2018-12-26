@@ -11,6 +11,6 @@ class GameState {
             gameManager = GameManager(app, PlayerManager(ScoreManager()), TimeManager(), LetterManager(), AudioManager(app))
         }
 
-        fun clear() = gameManager.reset()
+        fun clear() = gameManager.resetGame()
     }
 }

@@ -9,12 +9,12 @@ import java.util.*
 class AudioManager(ctx: Context) : TextToSpeech.OnInitListener {
     private val tts = TextToSpeech(ctx, this)
     private val tickPlayer = MediaPlayer.create(ctx, R.raw.tick)
-    var ttsInitialized = false
+    private var ttsInitialized = false
 
     override fun onInit(result: Int) {
         if (TextToSpeech.SUCCESS == result) {
             ttsInitialized = true
-            tts.setLanguage(Locale.US)
+            tts.language = Locale.US
         }
     }
 
@@ -23,5 +23,4 @@ class AudioManager(ctx: Context) : TextToSpeech.OnInitListener {
     }
 
     fun playTick() = tickPlayer.start()
-
 }

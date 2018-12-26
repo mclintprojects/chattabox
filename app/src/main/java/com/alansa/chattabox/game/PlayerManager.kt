@@ -9,12 +9,13 @@ class PlayerManager(private val scoreManager: ScoreManager) {
     private lateinit var players: MutableList<String>
     private lateinit var playerCompletedListener: (String) -> Unit
     private lateinit var onePlayerLeftListener: () -> Unit
-    val currentPlayer = ObservableField<String>("")
     private var currentPlayerIndex = 0
     private var turns = 1
 
+    val currentPlayer = ObservableField<String>("")
+
     fun setPlayers(players: MutableList<String>) {
-        scoreManager.setPlayers(players)
+        scoreManager.initializeScores(players)
         this.players = players
     }
 
@@ -30,40 +31,34 @@ class PlayerManager(private val scoreManager: ScoreManager) {
         this.onePlayerLeftListener = listener
     }
 
-    fun awardPoint() {
-        scoreManager.awardPoint(players[currentPlayerIndex])
-        if (scoreManager.getPoint(players[currentPlayerIndex]) == turns) {
-            removeCurrentPlayer()
-            if (players.size == 1 && ::onePlayerLeftListener.isInitialized) onePlayerLeftListener()
-        }
-    }
-
     fun initialize() {
         currentPlayer.set(players[currentPlayerIndex])
     }
 
-    fun nextPlayer() {
+    fun awardPoint() {
+        scoreManager.awardPoint(players[currentPlayerIndex])
+        if (scoreManager.getPlayerPoints(players[currentPlayerIndex]) == turns) {
+            exitCurrentPlayer()
+            if (players.size == 1 && ::onePlayerLeftListener.isInitialized) onePlayerLeftListener()
+        }
+    }
+
+    fun chooseNextPlayer() {
         ++currentPlayerIndex
         if (currentPlayerIndex >= players.size) currentPlayerIndex = 0
 
         currentPlayer.set(players[currentPlayerIndex])
     }
 
-    private fun removeCurrentPlayer() {
+    private fun exitCurrentPlayer() {
         if (::playerCompletedListener.isInitialized) playerCompletedListener(players[currentPlayerIndex])
         players.removeAt(currentPlayerIndex)
         --currentPlayerIndex
     }
 
-    fun reset() {
-        currentPlayerIndex = 0
-        currentPlayer.set("")
-        players = mutableListOf()
-    }
+    fun getScores(app: Application) = scoreManager.getScores(app)
 
     fun saveScores(app: Application) = scoreManager.saveScores(app)
-
-    fun getScores(app: Application) = scoreManager.getScores(app)
 
     fun serializePlayerNames(app: Application) {
         val editor = app.getSharedPreferences(app.packageName, Context.MODE_PRIVATE).edit()
@@ -71,10 +66,16 @@ class PlayerManager(private val scoreManager: ScoreManager) {
         editor.apply()
     }
 
-    fun deserializePlayerNames(app: Application): MutableList<PlayerViewModel> {
+    fun deserializeSavedPlayerNames(app: Application): MutableList<PlayerViewModel> {
         val playerNames = mutableListOf<PlayerViewModel>()
         val data = app.getSharedPreferences(app.packageName, Context.MODE_PRIVATE).getString("playerNames", "")
         data.split(",").map { name -> playerNames.add(PlayerViewModel(name)) }
         return playerNames
+    }
+
+    fun reset() {
+        currentPlayerIndex = 0
+        currentPlayer.set("")
+        players = mutableListOf()
     }
 }

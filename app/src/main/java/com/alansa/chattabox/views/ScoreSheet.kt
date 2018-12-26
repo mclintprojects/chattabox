@@ -18,7 +18,7 @@ class ScoreSheet : AppCompatActivity() {
     }
 
     private fun setupScoresList() {
-        val scores = GameState.gameManager.getScores().sortedByDescending { it -> it.points.get()!! }
+        val scores = GameState.gameManager.scores.sortedByDescending { it -> it.points.get()!! }
         scoreRecyclerView.layoutManager = LinearLayoutManager(this)
         scoreRecyclerView.adapter = ScoresAdapter(scores)
     }

@@ -24,7 +24,8 @@
             android:fontFamily="@font/poppins"
             android:text="@string/faq"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white80"/>
     </LinearLayout>
 
     <ImageView

@@ -7,7 +7,7 @@ class LetterManager {
     private var currentCharCode = 65
     val currentLetter = ObservableField("")
 
-    fun nextLetter() {
+    fun chooseNextLetter() {
         currentLetter.set(getRandomLetter())
     }
 
