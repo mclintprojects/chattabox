@@ -10,15 +10,15 @@ open class LetterManager {
 
     fun chooseNextLetter() {
         currentLetter.set(getRandomLetter())
-        if (prevChars.size > 5) prevChars.removeAt(prevChars.size - 1)
+        if (prevChars.size > 5) prevChars.removeAt(0)
     }
 
     private fun getRandomLetter(): String {
         val randomCharCode = (Random().nextInt(90 + 1 - 65) + 65)
-        if (randomCharCode != currentCharCode && !prevChars.contains(randomCharCode)) {
+        return if (randomCharCode != currentCharCode && !prevChars.contains(randomCharCode)) {
             currentCharCode = randomCharCode
             prevChars.add(randomCharCode)
-            return randomCharCode.toChar().toString()
-        } else return getRandomLetter()
+            randomCharCode.toChar().toString()
+        } else getRandomLetter()
     }
 }
